@@ -1,8 +1,22 @@
-const questions = [...]; // your questions array
-
 let currentQuestion = 0;
 let score = 0;
 let timer = 600; // 10 minutes in seconds
+let intervalId;
+
+const questions = [
+  // Add your questions here
+  {
+    question: "What is the capital of France?",
+    options: ["Paris", "London", "Berlin", "Madrid"],
+    answer: 0
+  },
+  {
+    question: "What is the largest planet in our solar system?",
+    options: ["Earth", "Saturn", "Jupiter", "Uranus"],
+    answer: 2
+  }
+  // Add more questions...
+];
 
 function generateQuestion() {
   const question = questions[currentQuestion];
@@ -17,8 +31,12 @@ function generateQuestion() {
 }
 
 function nextQuestion() {
-  const selectedOption = document.querySelector('input[name="option"]:checked');
-  if (selectedOption) {
+  try {
+    const selectedOption = document.querySelector('input[name="option"]:checked');
+    if (!selectedOption) {
+      alert("Please select an option!");
+      return;
+    }
     const answer = questions[currentQuestion].answer;
     if (parseInt(selectedOption.value) === answer) {
       score++;
@@ -31,22 +49,19 @@ function nextQuestion() {
         document.getElementById("submit-btn").style.display = "block";
       }
     }
-  } else {
-    alert("Please select an option!");
+  } catch (error) {
+    console.error(error);
   }
 }
 
 function submitQuiz() {
-  document.getElementById("question").style.display = "none";
-  document.getElementById("options").style.display = "none";
-  document.getElementById("next-btn").style.display = "none";
-  document.getElementById("submit-btn").style.display = "none";
-  document.getElementById("timer").style.display = "none";
+  clearInterval(intervalId);
+  hideQuizElements();
   document.getElementById("result").innerHTML = Your score is ${score} out of ${questions.length};
 }
 
 function startTimer() {
-  setInterval(() => {
+  intervalId = setInterval(() => {
     timer--;
     const minutes = Math.floor(timer / 60);
     const seconds = timer % 60;
@@ -60,7 +75,7 @@ function startTimer() {
 function startQuiz() {
   currentQuestion = 0;
   score = 0;
-  timer = 600; // Reset timer to 10 minutes
+  timer = 600;
   document.getElementById("question").style.display = "block";
   document.getElementById("options").style.display = "block";
   document.getElementById("next-btn").style.display = "block";
@@ -70,9 +85,16 @@ function startQuiz() {
   generateQuestion();
   startTimer();
 }
-document.getElementById("retake-btn").addEventListener("click", function() {
-  // Reset quiz logic here, e.g., reload page or reset variables
-  location.reload(); // Simple way to reload the page and restart
-});document.getElementById("next-btn").addEventListener("click", nextQuestion);
+
+function hideQuizElements() {
+  document.getElementById("question").style.display = "none";
+  document.getElementById("options").style.display = "none";
+  document.getElementById("next-btn").style.display = "none";
+  document.getElementById("submit-btn").style.display = "none";
+  document.getElementById("timer").style.display = "none";
+}
+
+document.getElementById("retake-btn").addEventListener("click", () => location.reload());
+document.getElementById("next-btn").addEventListener("click", nextQuestion);
 document.getElementById("submit-btn").addEventListener("click", submitQuiz);
 startQuiz();

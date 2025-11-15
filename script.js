@@ -83,3 +83,14 @@ document.getElementById("submit-btn").addEventListener("click", submitQuiz);
 
 generateQuestion();
 startTimer();
+// Assuming you have a function to start the quiz
+function startQuiz() {
+  // Your quiz initialization code here
+  // Reset scores, question indices, etc.
+}
+
+// Add event listener to retake button
+document.getElementById("retake-btn").addEventListener("click", startQuiz);
+
+// Call startQuiz function initially to start the quiz
+startQuiz();

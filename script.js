@@ -73,4 +73,6 @@ function startQuiz() {
 document.getElementById("retake-btn").addEventListener("click", function() {
   // Reset quiz logic here, e.g., reload page or reset variables
   location.reload(); // Simple way to reload the page and restart
-});
+});document.getElementById("next-btn").addEventListener("click", nextQuestion);
+document.getElementById("submit-btn").addEventListener("click", submitQuiz);
+startQuiz();

@@ -1,24 +1,23 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Tech Quiz</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz</title>
+  <style>
+    /* Add your styles here */
+  </style>
 </head>
 <body>
-  <div class="quiz-container">
-    <div class="question-container">
-      <p id="question"></p>
-      <ul id="options">
-      </ul>
-    </div>
-    <button id="next-btn">Next</button>
-    <button id="submit-btn" style="display: none;">Submit</button>
-    <div id="timer">10:00</div>
-    <div id="result"></div>
-  </div>
+  <h1>Quiz</h1>
+  <p id="timer">10:00</p>
+  <p id="question"></p>
+  <ul id="options"></ul>
+  <button id="next-btn">Next</button>
+  <button id="submit-btn" style="display: none;">Submit</button>
+  <button id="retake-btn">Retake</button>
+  <p id="result"></p>
 
   <script src="script.js"></script>
-  <p style="font-size: 14px; text-align: center;">Prepared by Teacher Ronald</p>
-  <button id="retake-btn">Retake Quiz</button>
 </body>
 </html>

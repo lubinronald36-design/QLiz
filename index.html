@@ -1,83 +1,74 @@
-<!DOCTYPE html>
+
 <html>
-<head>
-  <title>Mixed Quiz</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-    }
-    .question {
-      margin-bottom: 20px;
-    }
-    .correct {
-      color: green;
-    }
-    .incorrect {
-      color: red;
-    }
-  </style>
-</head>
-<body>
-  <h1>Mixed Quiz</h1>
-  <h2>English and Computer Questions</h2>
-  <form id="quiz-form">
-    <!-- Question 1 -->
-    <div class="question">
-      <p>1. What's the opposite of "big"?</p>
-      <input type="text" id="q1" name="q1">
-      <span id="q1-feedback"></span>
-    </div>
-    <!-- Question 2 -->
-    <div class="question">
-      <p>2. What does CPU stand for?</p>
-      <input type="text" id="q2" name="q2">
-      <span id="q2-feedback"></span>
-    </div>
-    <!-- Question 3 -->
-    <div class="question">
-      <p>3. Identify the sentence with correct grammar:</p>
-      <input type="radio" id="q3-a" name="q3" value="a">
-      <label for="q3-a">Me go store.</label><br>
-      <input type="radio" id="q3-b" name="q3" value="b">
-      <label for="q3-b">I go to store.</label><br>
-      <input type="radio" id="q3-c" name="q3" value="c">
-      <label for="q3-c">I goes to the store.</label><br>
-      <input type="radio" id="q3-d" name="q3" value="d">
-      <label for="q3-d">I go to the store.</label>
-      <span id="q3-feedback"></span>
-    </div>
-    <button type="submit">Submit</button>
-    <p id="score"></p>
-    <button id="retake-btn" style="display: none;">Retake Quiz</button>
-  </form>
+  <body>
+    <h1>Quiz Time!</h1>
+    <form id="quiz-form">
+      <p>1. What is the capital of France?</p>
+      <input type="radio" id="q1-a1" name="q1" value="Paris">
+      <label for="q1-a1">Paris</label><br>
+      <input type="radio" id="q1-a2" name="q1" value="London">
+      <label for="q1-a2">London</label><br>
+      <input type="radio" id="q1-a3" name="q1" value="Berlin">
+      <label for="q1-a3">Berlin</label>
 
-  <script>
-    const form = document.getElementById('quiz-form');
-    const scoreElement = document.getElementById('score');
-    const retakeBtn = document.getElementById('retake-btn');
+      <p>2. What is the largest planet in our solar system?</p>
+      <input type="radio" id="q2-a1" name="q2" value="Earth">
+      <label for="q2-a1">Earth</label><br>
+      <input type="radio" id="q2-a2" name="q2" value="Jupiter">
+      <label for="q2-a2">Jupiter</label><br>
+      <input type="radio" id="q2-a3" name="q2" value="Saturn">
+      <label for="q2-a3">Saturn</label>
 
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      let score = 0;
+      <p>3. Which programming language is this quiz written in?</p>
+      <input type="radio" id="q3-a1" name="q3" value="JavaScript">
+      <label for="q3-a1">JavaScript</label><br>
+      <input type="radio" id="q3-a2" name="q3" value="Python">
+      <label for="q3-a2">Python</label><br>
+      <input type="radio" id="q3-a3" name="q3" value="Java">
+      <label for="q3-a3">Java</label>
 
-      const q1Answer = document.getElementById('q1').value.toLowerCase();
-      if (q1Answer === 'small') {
-        document.getElementById('q1-feedback').textContent = 'Correct!';
-        document.getElementById('q1-feedback').className = 'correct';
-        score++;
-      } else {
-        document.getElementById('q1-feedback').textContent = 'Incorrect. The correct answer is "small".';
-        document.getElementById('q1-feedback').className = 'incorrect';
-      }
+      <button type="button" id="submit-btn">Submit</button>
+      <div id="result"></div>
+      <button type="button" id="retake-btn" style="display: none;">Retake</button>
+    </form>
 
-      const q2Answer = document.getElementById('q2').value.toLowerCase();
-      if (q2Answer === 'central processing unit') {
-        document.getElementById('q2-feedback').textContent = 'Correct!';
-        document.getElementById('q2-feedback').className = 'correct';
-        score++;
-      } else {
-        document.getElementById('q2-feedback').textContent = 'Incorrect. The correct answer is "Central Processing Unit".';
-        document.getElementById('q2-feedback').className = 'incorrect';
-      }
+    <script>
+      const form = document.getElementById('quiz-form');
+      const submitBtn = document.getElementById('submit-btn');
+      const resultDiv = document.getElementById('result');
+      const retakeBtn = document.getElementById('retake-btn');
 
-      const q3Answer = document.querySelector('input[name="q3"]:
+      const correctAnswers = {
+        q1: 'Paris',
+        q2: 'Jupiter',
+        q3: 'JavaScript'
+      };
+
+      submitBtn.addEventListener('click', () => {
+        const userAnswers = {};
+        const formData = new FormData(form);
+        for (const [name, value] of formData) {
+          userAnswers[name] = value;
+        }
+
+        let score = 0;
+        Object.keys(correctAnswers).forEach((question) => {
+          if (userAnswers[question] === correctAnswers[question]) {
+            score++;
+          }
+        });
+
+        const totalQuestions = Object.keys(correctAnswers).length;
+        const percentage = (score / totalQuestions) * 100;
+        resultDiv.innerText = You scored ${score} out of ${totalQuestions} (${percentage}%);
+        retakeBtn.style.display = 'block';
+      });
+
+      retakeBtn.addEventListener('click', () => {
+        form.reset();
+        resultDiv.innerText = '';
+        retakeBtn.style.display = 'none';
+      });
+    </script>
+  </body>
+</html>

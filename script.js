@@ -89,8 +89,16 @@ function startQuiz() {
   // Reset scores, question indices, etc.
 }
 
-// Add event listener to retake button
-document.getElementById("retake-btn").addEventListener("click", startQuiz);
-
-// Call startQuiz function initially to start the quiz
-startQuiz();
+function startQuiz() {
+  currentQuestion = 0;
+  score = 0;
+  timer = 600; // Reset timer to 10 minutes
+  document.getElementById("question").style.display = "block";
+  document.getElementById("options").style.display = "block";
+  document.getElementById("next-btn").style.display = "block";
+  document.getElementById("submit-btn").style.display = "none";
+  document.getElementById("timer").style.display = "block";
+  document.getElementById("result").innerHTML = "";
+  generateQuestion();
+  startTimer();
+}

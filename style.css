@@ -35,4 +35,17 @@
     padding: 15px 30px;
     font-size: 18px;
   }
+}.button {
+  width: 100%;
+  max-width: 200px;
+  padding: 10px 20px;
+  font-size: 16px;
+  margin: 10px auto;
+}
+
+@media only screen and (max-width: 768px) {
+  .button {
+    padding: 15px 30px;
+    font-size: 18px;
+  }
 }

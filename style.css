@@ -1,23 +1,4 @@
-#submit-btn {
-    display: none;
-}
 
-#quiz-container {
-    width: 50%;
-    margin: 40px auto;
-    text-align: center;
-}
-
-#options {
-    list-style: none;
-    padding: 0;
-}
-
-#options li {
-    margin-bottom: 10px;#submit-btn {
-  display: none;
-}
-}
 .button {
   background-color: #4CAF50;
   color: #fff;
@@ -25,46 +6,11 @@
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  font-size: 16px;
   width: 100%;
   max-width: 200px;
   margin: 0 auto;
-}
-.button {
-  background-color: #4CAF50;
-  color: #fff;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
   font-size: 16px;
-  width: 100%;
-  max-width: 200px;
-  margin: 0 auto;
   text-align: center;
-  text-decoration: none;
-  display: block;
-}
-
-.button:hover {
-  background-color: #3e8e41;
-}
-
-
-.button {
-  background-color: #4CAF50;
-  color: #fff;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 16px;
-  width: 100%;
-  max-width: 200px;
-  margin: 0 auto;
-  text-align: center;
-  text-decoration: none;
-  display: block;
 }
 
 .button:hover {
@@ -73,7 +19,6 @@
 
 @media only screen and (max-width: 768px) {
   .button {
-    width: 100%;
     padding: 15px 30px;
     font-size: 18px;
   }
